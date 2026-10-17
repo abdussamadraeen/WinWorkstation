@@ -34,8 +34,16 @@ WinWorkstation/
 
 ## Quickstart
 
-### Automated Interactive Bootstrap (Administrator)
-1. Clone or download the repository.
+### Option 1: 1-Line Remote Bootstrap (PowerShell Admin)
+```powershell
+irm https://raw.githubusercontent.com/abdussamadraeen/WinWorkstation/main/main.ps1 | iex
+```
+
+### Option 2: Automated Interactive Bootstrap (Administrator)
+1. Clone or download the repository:
+   ```bash
+   git clone https://github.com/abdussamadraeen/WinWorkstation.git
+   ```
 2. Execute **`install.bat`** (prompts for UAC elevation if required).
 3. Select the desired module from the interactive prompt:
    * **[1] Full Workstation Suite** (Performance + Ergonomics + Developer Toolchain)
