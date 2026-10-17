@@ -1,0 +1,18 @@
+# Windows system artifacts
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.tmp
+*.log
+
+# Personal keys & credentials
+*.pem
+*.key
+.env
+.env.local
+
+# Build outputs
+dist/
+build/
+.venv/
+venv/
