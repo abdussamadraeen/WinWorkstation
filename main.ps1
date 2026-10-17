@@ -75,10 +75,11 @@ Write-Host " [1] Full Workstation Suite (Performance + Ergonomics + Developer)" 
 Write-Host " [2] Kernel Latency & Hardware Optimization (Module 01)" -ForegroundColor White
 Write-Host " [3] Workstation Ergonomics & Aesthetics (Module 02)" -ForegroundColor White
 Write-Host " [4] Software Engineering & Systems Toolchain (Module 03)" -ForegroundColor White
-Write-Host " [5] Autonomous Resource Management Watchdog (Module 04)" -ForegroundColor White
+Write-Host " [5] Launch Foreground Focus Guardian (Module 04 - Foreground)" -ForegroundColor White
+Write-Host " [6] Enable Guardian Silent Auto-Start on Boot" -ForegroundColor White
 Write-Host " [Q] Quit`n" -ForegroundColor DarkGray
 
-$choice = Read-Host "Enter selection [1-5, Q]"
+$choice = Read-Host "Enter selection [1-6, Q]"
 
 switch ($choice) {
     "1" { Run-Performance; Run-Aesthetics; Run-Developer }
@@ -86,6 +87,7 @@ switch ($choice) {
     "3" { Run-Aesthetics }
     "4" { Run-Developer }
     "5" { Run-Guardian }
+    "6" { & "$ScriptDir\modules\04-guardian\enable-autostart.ps1" }
     "Q" { Write-Host "Exited." -ForegroundColor Gray; Exit }
     default { Write-Warning "Invalid selection. Exiting." }
 }
