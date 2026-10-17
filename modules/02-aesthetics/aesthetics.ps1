@@ -1,16 +1,16 @@
 <#
 .SYNOPSIS
-    Module 02: Aesthetics, Smoothness & Futuristic Glass Look
+    Module 02: Workstation Ergonomics & Desktop Aesthetics
 .DESCRIPTION
-    Combines native Windows 11 sleek desktop styling with ultralight, GPU-accelerated tools:
+    Combines native Windows 11 desktop styling with high-performance, GPU-accelerated tools:
     1. Native Windows 11 Styling: Centered taskbar, hides clutter (widgets/copilot/task view).
-    2. TranslucentTB: Pure glass / acrylic dynamic taskbar (0% CPU footprint).
-    3. QuickLook: Instant macOS-style Spacebar preview for code, PDFs, media.
-    4. Flow Launcher: Futuristic Spotlight/Raycast command palette (Alt + Space).
+    2. TranslucentTB: High-performance DWM acrylic composition taskbar (0% CPU footprint).
+    3. QuickLook: Instantaneous spacebar file inspection for code, PDFs, media.
+    4. Flow Launcher: High-efficiency keyboard-driven command palette (Alt + Space).
 #>
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host "   [MODULE 02] AESTHETICS, SMOOTHNESS & FUTURISTIC LOOK   " -ForegroundColor Yellow
+Write-Host "   [MODULE 02] WORKSTATION ERGONOMICS & DESKTOP AESTHETICS" -ForegroundColor Yellow
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 # 1. Native Windows 11 Clean Taskbar & Clutter Removal

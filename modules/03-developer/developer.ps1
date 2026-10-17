@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-    Module 03: MSc Computer Science Developer & Systems Suite
+    Module 03: Software Engineering & Systems Toolchain
 .DESCRIPTION
-    Configures an elite developer workstation:
-    1. Deploys memory-capped .wslconfig (4GB limit, 2 vCPUs, dropcache).
+    Configures an enterprise developer workstation:
+    1. Deploys resource-governed .wslconfig (4GB limit, 2 vCPUs, dropcache).
     2. Installs Rust CLI suite: Starship prompt, Ripgrep (rg), Bat (bat), astral-sh uv.
     3. Tunes Git engine for NVMe SSDs (fscache, preloadindex, visual git lg).
     4. Configures PowerShell profile with Unix aliases and terminal AI copilot ('ask').
@@ -11,7 +11,7 @@
 #>
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host "   [MODULE 03] MSc COMPUTER SCIENCE DEVELOPER SUITE       " -ForegroundColor Yellow
+Write-Host "   [MODULE 03] SOFTWARE ENGINEERING & SYSTEMS TOOLCHAIN   " -ForegroundColor Yellow
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 # 1. WSL2 / Docker Memory Throttling

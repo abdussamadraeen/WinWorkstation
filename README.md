@@ -1,114 +1,116 @@
-# ⚡ Windows 11 "Beast Mode" — Modular Performance, Aesthetic & Developer Architecture
+# WinWorkstation: Windows 11 Architecture & Optimization Suite
 
-[![Windows 11](https://img.shields.io/badge/Windows-11%20Ready-0078D4?logo=windows11&logoColor=white)](https://microsoft.com/windows)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Zero Bloat](https://img.shields.io/badge/Bloatware-0%25-red.svg)]()
-[![Hardware-Accelerated](https://img.shields.io/badge/Performance-Kernel%20Tuned-orange.svg)]()
+[![Windows 11](https://img.shields.io/badge/Platform-Windows%2011-0078D4?logo=windows11&logoColor=white)](https://microsoft.com/windows)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Zero Telemetry](https://img.shields.io/badge/Telemetry-Minimized-brightgreen.svg)]()
+[![Hardware Architecture](https://img.shields.io/badge/Kernel-Low%20Latency-orange.svg)]()
 
-A modular, zero-cost, open-source engineering suite to transform Windows 11 into a low-latency, futuristic, high-performance workstation for software engineers, computer science researchers, and power users.
+**WinWorkstation** is an open-source, modular systems engineering toolkit designed to optimize Microsoft Windows 11 for software engineers, computer science researchers, and high-throughput workstations. 
+
+It provides fine-grained kernel latency tuning, non-destructive background service minimization, storage engine I/O acceleration, modern workstation ergonomics, and developer environment provisioning.
 
 ---
 
-## 🧭 Repository Architecture
+## Architecture Overview
 
-The repository is modularly decoupled so you can apply **only what you need**:
+The repository is modularly decoupled into focused functional subsystems:
 
 ```
-Windows11-BeastMode/
+WinWorkstation/
 ├── modules/
-│   ├── 01-performance/        # 🚀 Low-Latency Kernel, Network, & NVMe Filesystem Engine
-│   ├── 02-aesthetics/         # 💎 Glass Taskbar, Spacebar Preview, & Spotlight Palette
-│   ├── 03-developer/          # 🛠️ Rust CLI Tools, WSL2 Memory Cap, & Developer Shell
-│   └── 04-guardian/           # 🛡️ Autonomous RAM-Leak Trimmer & Dynamic Priority Watchdog
-├── native-vs-thirdparty.md    # ⚖️ Deep Analysis: What Windows has natively vs 3rd-party
-├── main.ps1                   # 🎛️ Master Orchestrator (CLI switches + interactive menu)
-├── install.bat                # ⚡ 1-Double-Click Auto-Elevation Launcher
+│   ├── 01-performance/        # Kernel scheduling, MMCSS, network pacing & NVMe I/O
+│   ├── 02-aesthetics/         # Workstation ergonomics, DWM acrylic blur & spotlight palette
+│   ├── 03-developer/          # POSIX shell layer, Rust CLI suite & WSL2 resource governance
+│   └── 04-guardian/           # Dynamic working-set memory reclamation & process priority balancer
+├── native-vs-thirdparty.md    # Architectural assessment: Native Windows subsystems vs 3rd-party
+├── main.ps1                   # Master CLI orchestrator with parameter dispatch and interactive TUI
+├── install.bat                # Automated administrative elevation bootstrap
 ├── .gitignore
-├── LICENSE                    # MIT
+├── LICENSE                    # MIT License
 └── README.md
 ```
 
 ---
 
-## ⚡ Quickstart
+## Quickstart
 
-### Option 1: 1-Click Double-Click (Local / USB Drive)
-1. Download or clone this repository.
-2. Double-click **`install.bat`** (accept the Administrator prompt).
-3. Select an option from the interactive menu:
-   * **[1] Full Beast Mode** (Performance + Aesthetics + Developer)
-   * **[2] Raw Performance & Latency Only** (Module 01)
-   * **[3] Aesthetics & Futuristic Glass Look Only** (Module 02)
-   * **[4] MSc CS Developer Suite Only** (Module 03)
-   * **[5] Launch Autonomous OS Guardian Watchdog** (Module 04)
+### Automated Interactive Bootstrap (Administrator)
+1. Clone or download the repository.
+2. Execute **`install.bat`** (prompts for UAC elevation if required).
+3. Select the desired module from the interactive prompt:
+   * **[1] Full Workstation Suite** (Performance + Ergonomics + Developer Toolchain)
+   * **[2] Kernel & Latency Optimization Only** (Module 01)
+   * **[3] Modern Ergonomics & Aesthetics Only** (Module 02)
+   * **[4] Developer & Systems Toolchain Only** (Module 03)
+   * **[5] Autonomous Resource Guardian Watchdog** (Module 04)
 
-### Option 2: 1-Command PowerShell (Remote GitHub)
+### Automated Headless Execution (PowerShell)
 ```powershell
-# Run Full Setup directly from PowerShell (Admin):
-irm https://raw.githubusercontent.com/DimensionWanderer/Windows11-BeastMode/main/main.ps1 | iex
-```
+# Execute full workstation deployment
+.\main.ps1 -All
 
-### Option 3: Command-Line Flags
-```powershell
-# Performance Only
+# Apply kernel and I/O optimizations only
 .\main.ps1 -Performance
 
-# Aesthetics Only
+# Provision modern ergonomics only
 .\main.ps1 -Aesthetics
 
-# Developer Suite Only
+# Provision developer toolchains only
 .\main.ps1 -Developer
 ```
 
 ---
 
-## 📦 What Each Module Does
+## Detailed Module Specifications
 
-### 🚀 [Module 01: Raw Performance & Low Latency](modules/01-performance/performance.ps1)
-* **MMCSS `SystemResponsiveness = 0`:** Grants **100% of CPU time** to active foreground windows (eliminates the default 20% background reservation).
-* **Network Packet Unthrottling (`NetworkThrottlingIndex = 0xFFFFFFFF`):** Disables ancient network packet capping for zero ping jitter.
-* **CPU Thread Quanta (`Win32PrioritySeparation = 0x26`):** Grants instant burst priority to active keystrokes and clicks.
-* **NVMe Speedup:** Disables legacy MS-DOS 8.3 name generation and Last Access Time write updates on NTFS.
-* **4.0 GB NVMe Storage Freed (`powercfg -h off`):** Deletes `hiberfil.sys` and eliminates dirty Fast Startup memory leaks, ensuring a 100% clean kernel boot every start.
-* **Browser RAM-Ghost Killer:** Configures Edge and Chrome to release 100% of memory immediately when closed.
-
----
-
-### 💎 [Module 02: Aesthetics & Smoothness](modules/02-aesthetics/aesthetics.ps1)
-* **Clean Native Taskbar:** Centers taskbar icons and hides clutter (Task View, Widgets, and search boxes).
-* **TranslucentTB:** Pure acrylic / crystal glass floating taskbar with 0% CPU consumption.
-* **QuickLook:** Tap **`Spacebar`** on any code, image, video, or PDF in File Explorer for instant macOS-style preview.
-* **Flow Launcher:** Press **`Alt + Space`** for a sleek, blurred Spotlight command bar with instant math, shell execution, and fuzzy search.
+### [Module 01: Kernel & Hardware Optimization](modules/01-performance/performance.ps1)
+* **MMCSS Foreground Quantum Allocation (`SystemResponsiveness = 0`):** Reallocates 100% of CPU cycles to the active interactive foreground process, eliminating default background reservations.
+* **Network Throttling Removal (`NetworkThrottlingIndex = 0xFFFFFFFF`):** Disables historical 10 packets/ms throttling on non-multimedia traffic, eliminating packet queuing and ping jitter.
+* **Thread Quantum Dispatch (`Win32PrioritySeparation = 0x26`):** Configures short, variable, high-priority quanta to foreground threads for immediate burst responsiveness.
+* **NVMe Storage Subsystem Acceleration:**
+  * Disables NTFS 8.3 legacy DOS directory lookup generation (`fsutil 8dot3name set 1`).
+  * Disables Last Access timestamp writing on file read operations (`fsutil behavior set disablelastaccess 1`).
+* **Clean Kernel Initialization:** Purges `hiberfil.sys` (`powercfg -h off`), reclaiming ~4 GB of NVMe storage and preventing dirty Fast Startup session carryover.
+* **Background Process Working-Set Governance:** Applies enterprise policies to prevent closed browser processes from persisting in background idle memory.
 
 ---
 
-### 🛠️ [Module 03: MSc CS Developer Suite](modules/03-developer/developer.ps1)
-* **WSL2 / Docker RAM Limiter:** Automatically deploys `~/.wslconfig` (caps Linux VM at 4GB RAM, 2 vCPUs, and enables automatic memory dropcache).
-* **Rust CLI Suite:** Installs **Starship** (sub-millisecond prompt), **Ripgrep (`rg`)** (10x faster regex code search), **Bat (`bat`)** (syntax-highlighted code viewer), and **uv** (fast Python manager).
-* **Git Acceleration:** Enables `core.fscache` and `core.preloadindex`. Configures **`git lg`** for visual commit trees.
-* **Terminal AI Copilot (`ask`):** Run `ask "your question"` directly in your shell to query local models via Ollama.
-* **Defender Exclusions:** Whitelists developer workspaces to speed up Java, C++, Python, and Node compilations by 2x to 5x.
+### [Module 02: Workstation Ergonomics & Desktop Aesthetics](modules/02-aesthetics/aesthetics.ps1)
+* **Streamlined Taskbar Configuration:** Centers application icons, suppresses default promotional clutter (Widgets, Task View, promotional search bars).
+* **Direct DWM Composition (`TranslucentTB`):** Leverages native Windows Desktop Window Manager (DWM) composition APIs to create an unobtrusive acrylic glass taskbar with 0% CPU overhead.
+* **Instantaneous File Inspection (`QuickLook`):** Enables native spacebar inspection of markdown, source code, PDFs, media, and archives without launching full application suites.
+* **Unified Command Palette (`Flow Launcher`):** High-speed, keyboard-driven navigation (`Alt + Space`) for fuzzy application launching, arithmetic calculations, and system commands.
 
 ---
 
-### 🛡️ [Module 04: Autonomous OS Guardian](modules/04-guardian/os-guardian.ps1)
-* A lightweight (<0.05% CPU) background watchdog.
-* Automatically frees RAM when physical memory usage exceeds 82% without closing apps.
-* Dynamically elevates process priority for active IDEs (VS Code, Antigravity, IntelliJ, PyCharm) while lowering priority for background updaters.
+### [Module 03: Software Engineering & Systems Toolchain](modules/03-developer/developer.ps1)
+* **WSL2 Resource Governance:** Deploys `~/.wslconfig` to allocate a deterministic 4 GB memory ceiling and 2 vCPUs to virtual machine workloads, enabling automatic memory reclamation (`autoMemoryReclaim = dropcache`).
+* **High-Throughput CLI Utilities:** Installs compiled Rust/C++ developer tooling via `winget`:
+  * **Starship:** High-efficiency, cross-shell prompt with asynchronous Git status.
+  * **Ripgrep (`rg`):** Multi-threaded line-oriented regex search engine.
+  * **Bat (`bat`):** Syntax-highlighted text reader with Git modification gutter integration.
+  * **uv:** High-speed Python package and virtual environment resolver.
+* **Git Engine I/O Caching:** Configures `core.fscache`, `core.preloadindex`, and a structured visual commit tree (`git lg`).
+* **Windows Defender Workspace Exclusions:** Whitelists local build paths and language dependency caches (`.cargo`, `.rustup`, `.m2`, `.gradle`) to eliminate build pipeline I/O locks.
 
 ---
 
-## ⚖️ Native Features vs. Third-Party Tools
+### [Module 04: Dynamic Resource Management Guardian](modules/04-guardian/os-guardian.ps1)
+* Autonomous, low-overhead (<0.05% CPU) background watchdog.
+* Proactively monitors physical memory pressure; triggers clean working-set trims if system utilization exceeds 82%.
+* Dynamically elevates priority classes for active IDEs (VS Code, Antigravity, CLion, IntelliJ) while lowering priorities for background updater services.
 
-Before adding any third-party software, read our architectural manifesto:  
+---
+
+## Architectural Principles: Native vs. Third-Party
+
+Before introducing third-party components, consult our architectural analysis:  
 👉 **[Read: native-vs-thirdparty.md](native-vs-thirdparty.md)**
 
-**Summary Rule:**
-* **Native is Best for:** Window snapping (`Win+Z`), Taskbar centering, Virtual Desktops (`Win+Ctrl+Arrows`), Terminal tabs, Dark Mode, Native Sudo.
-* **Third-Party is Essential for:** Spacebar preview (QuickLook), Glass taskbar (TranslucentTB), Fuzzy Spotlight (Flow Launcher), Rust CLI (Starship/Ripgrep).
+WinWorkstation strictly enforces that native Windows 11 capabilities (Snap Layouts, Virtual Desktops, Terminal Tabs, Windows Sudo) are leveraged whenever possible, reserving third-party tools solely for capabilities absent from the NT platform.
 
 ---
 
-## 📜 License
+## License
 
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for complete terms.

@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-    Autonomous OS Guardian & Memory Manager for Windows 11 (MSc CS Edition)
+    Dynamic Resource Management Guardian for Windows 11
 .DESCRIPTION
-    Runs an intelligent background monitoring loop:
-    1. Monitors physical RAM usage; clears standby memory/leaks if usage exceeds 82%.
-    2. Elevates CPU scheduling priority for developer IDEs (VS Code, Antigravity, Windsurf, PyCharm, IntelliJ).
-    3. Throttles priority of non-essential background updaters.
-    4. Minimal footprint: Consumes <0.05% CPU cycles.
+    Runs an intelligent, low-overhead background monitoring daemon:
+    1. Monitors physical RAM pressure; executes working-set memory reclamation if usage exceeds 82%.
+    2. Dynamically elevates CPU priority classes for active IDEs (VS Code, Antigravity, CLion, IntelliJ).
+    3. Lowers scheduling priority for background updater services.
+    4. Negligible footprint: Consumes <0.05% CPU cycles.
 #>
 
 $signature = @'
@@ -16,7 +16,7 @@ public static extern int EmptyWorkingSet(IntPtr hwProc);
 $psapi = Add-Type -MemberDefinition $signature -Name "PSAPISet" -Namespace "Win32API" -PassThru -ErrorAction SilentlyContinue
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host "       AUTONOMOUS OS GUARDIAN ACTIVE (MSc CS ENGINE)      " -ForegroundColor Green
+Write-Host "    DYNAMIC RESOURCE MANAGEMENT GUARDIAN (WinWorkstation)  " -ForegroundColor Green
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host "Monitoring system metrics every 10 seconds. Press Ctrl+C to stop.`n" -ForegroundColor Gray
 

@@ -1,12 +1,12 @@
 @echo off
-:: Windows 11 Beast-Mode Master Launcher
-:: Elevates to Administrator automatically and runs main.ps1
+:: WinWorkstation: Administrative Bootstrap Launcher
+:: Evaluates elevation status, elevates if necessary, and executes main.ps1
 
 net session >nul 2>&1
 if %errorLevel% == 0 (
     goto :run_powershell
 ) else (
-    echo Elevating to Administrator...
+    echo Requesting Administrator elevation...
     powershell -Command "Start-Process '%~0' -Verb RunAs"
     exit /b
 )

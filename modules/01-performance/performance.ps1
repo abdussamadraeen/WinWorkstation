@@ -12,14 +12,14 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 }
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host "   [MODULE 01] RAW PERFORMANCE & KERNEL LATENCY ENGINE    " -ForegroundColor Yellow
+Write-Host "   [MODULE 01] KERNEL & HARDWARE LATENCY ENGINE          " -ForegroundColor Yellow
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 # 1. System Restore Point
 Write-Host "`n[+] Creating System Restore Point..." -ForegroundColor Green
 try {
     Enable-ComputerRestore -Drive "C:" -ErrorAction SilentlyContinue
-    Checkpoint-Computer -Description "Before_BeastMode_Performance" -RestorePointType "MODIFY_SETTINGS" -ErrorAction Stop
+    Checkpoint-Computer -Description "Before_WinWorkstation_Optimization" -RestorePointType "MODIFY_SETTINGS" -ErrorAction Stop
     Write-Host " -> Restore point created successfully." -ForegroundColor Gray
 } catch {
     Write-Host " -> Restore point skipped (System Protection disabled or busy)." -ForegroundColor DarkGray
