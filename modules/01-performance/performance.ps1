@@ -32,8 +32,8 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multi
 # Disable network packet throttling (eliminate 10 packets/ms ancient cap)
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" -Name "NetworkThrottlingIndex" -Value 0xFFFFFFFF -Type DWord -Force
 
-# Win32PrioritySeparation = 0x26 (38 decimal: Short, variable quanta giving maximum burst priority to foreground tasks)
-Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl" -Name "Win32PrioritySeparation" -Value 38 -Type DWord -Force
+# Win32PrioritySeparation = 2 (Default Balanced Desktop Quanta - Fair CPU scheduling across multi-process apps, Electron, and Docker)
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl" -Name "Win32PrioritySeparation" -Value 2 -Type DWord -Force
 
 # MMCSS Tasks (Games / Multimedia priority boost)
 $gamesPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games"
@@ -70,19 +70,7 @@ if (-not (Test-Path $explorerPolicy)) { New-Item -Path $explorerPolicy -Force | 
 Set-ItemProperty -Path $explorerPolicy -Name "DisableSearchBoxSuggestions" -Value 1 -Type DWord -Force
 Write-Host " -> GameDVR compositing hook killed and UI latency set to 0ms." -ForegroundColor Gray
 
-# 5. Browser Background RAM-Ghost Killer
-Write-Host "`n[+] Stopping Silent Background Memory Leaks in Edge & Chrome..." -ForegroundColor Green
-$edgePath = "HKLM:\SOFTWARE\Policies\Microsoft\Edge"
-if (-not (Test-Path $edgePath)) { New-Item -Path $edgePath -Force | Out-Null }
-Set-ItemProperty -Path $edgePath -Name "StartupBoostEnabled" -Value 0 -Type DWord -Force
-Set-ItemProperty -Path $edgePath -Name "BackgroundModeEnabled" -Value 0 -Type DWord -Force
-
-$chromePath = "HKLM:\SOFTWARE\Policies\Google\Chrome"
-if (-not (Test-Path $chromePath)) { New-Item -Path $chromePath -Force | Out-Null }
-Set-ItemProperty -Path $chromePath -Name "BackgroundModeEnabled" -Value 0 -Type DWord -Force
-Write-Host " -> Closing browsers now immediately returns 100% of RAM to host." -ForegroundColor Gray
-
-# 6. Reclaim 4GB NVMe Storage (Purge Dirty Fast-Startup State)
+# 5. Reclaim 4GB NVMe Storage (Purge Dirty Fast-Startup State)
 Write-Host "`n[+] Reclaiming 4 GB Storage & Enforcing Clean Kernel Boots..." -ForegroundColor Green
 powercfg -h off
 Write-Host " -> Hibernation purged (Deleted hiberfil.sys; guaranteed clean kernel boot every start)." -ForegroundColor Gray

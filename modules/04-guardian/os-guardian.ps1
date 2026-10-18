@@ -34,8 +34,8 @@ Write-Host "==========================================================" -Foregro
 Write-Host "Active application will receive instant CPU boost; background apps throttled." -ForegroundColor Gray
 Write-Host "Press Ctrl+C to stop.`n" -ForegroundColor DarkGray
 
-$exemptProcesses = @("explorer", "dwm", "csrss", "smss", "services", "lsass", "System", "Idle")
-$bgThrottled = @("AdobeCollabSync", "Acrotray", "AGMService", "msedge", "BraveUpdate", "OneDrive", "PhoneExperienceHost")
+$exemptProcesses = @("explorer", "dwm", "csrss", "smss", "services", "lsass", "System", "Idle", "msedge", "chrome", "Antigravity", "code")
+$bgThrottled = @("AdobeCollabSync", "Acrotray", "AGMService", "BraveUpdate", "PhoneExperienceHost")
 
 $lastForegroundPid = 0
 
@@ -72,7 +72,7 @@ while ($true) {
             }
         }
 
-        # 3. Throttle Known Heavy Background Services
+        # 3. Throttle Known Heavy Background Telemetry
         foreach ($bg in $bgThrottled) {
             Get-Process -Name $bg -ErrorAction SilentlyContinue | ForEach-Object {
                 if ($_.Id -ne $currentPid -and $_.PriorityClass -ne "BelowNormal" -and $_.PriorityClass -ne "Idle") {
@@ -83,23 +83,7 @@ while ($true) {
             }
         }
 
-        # 4. Check RAM Pressure (Reclaim if > 80%)
-        $os = Get-CimInstance Win32_OperatingSystem -ErrorAction SilentlyContinue
-        if ($os) {
-            $totalRAM = $os.TotalVisibleMemorySize
-            $freeRAM = $os.FreePhysicalMemory
-            $usedPercent = [math]::Round((($totalRAM - $freeRAM) / $totalRAM) * 100, 1)
-
-            if ($usedPercent -gt 80.0) {
-                Write-Host "[MEMORY] Physical RAM pressure ($usedPercent%). Trimming inactive background memory..." -ForegroundColor Yellow
-                Get-Process | Where-Object { $_.WorkingSet64 -gt 50MB -and $_.Id -ne $currentPid -and $exemptProcesses -notcontains $_.ProcessName } | ForEach-Object {
-                    try { [Win32Sys]::EmptyWorkingSet($_.Handle) | Out-Null } catch {}
-                }
-                [System.GC]::Collect()
-            }
-        }
-
     } catch {}
 
-    Start-Sleep -Seconds 2
+    Start-Sleep -Seconds 3
 }

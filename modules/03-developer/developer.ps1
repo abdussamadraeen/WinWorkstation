@@ -19,16 +19,10 @@ Write-Host "`n[+] Deploying Optimized .wslconfig (Stopping Docker RAM Leaks)..."
 $wslConfigPath = "$env:USERPROFILE\.wslconfig"
 $wslConfigContent = @"
 [wsl2]
-memory=4GB
-processors=2
-autoMemoryReclaim=gradual
 localhostForwarding=true
-
-[experimental]
-autoMemoryReclaim=dropcache
 "@
 Set-Content -Path $wslConfigPath -Value $wslConfigContent -Encoding UTF8 -Force
-Write-Host " -> .wslconfig deployed: Linux/Docker RAM capped at 4GB with auto-dropcache." -ForegroundColor Gray
+Write-Host " -> .wslconfig configured for unconstrained Docker execution." -ForegroundColor Gray
 
 # 2. Modern Rust Developer CLI Tools via Winget
 Write-Host "`n[+] Installing High-Speed CLI Suite via Winget..." -ForegroundColor Green
